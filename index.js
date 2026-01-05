@@ -1,10 +1,9 @@
 let hasBlackJack = false
 let isAlive = false
 
-let firstCard=getRandomCard();
-let secondCard=getRandomCard();
-let cards = [firstCard, secondCard] //array
-let sum= firstCard+secondCard;
+
+let cards =[]
+let sum= 0;
 let message = ""
 
 let messageEl = document.getElementById("message-el")
@@ -26,7 +25,13 @@ function getRandomCard(){
 }
 
 function startGame(){
-    
+
+    hasBlackJack=false;
+    isAlive=true;
+    let firstCard=getRandomCard();
+    let secondCard=getRandomCard();
+    cards = [firstCard, secondCard]; //array
+    sum = firstCard + secondCard;
     renderGame()
 }
 function renderGame(){
@@ -44,8 +49,10 @@ if (sum<=20)
 }
 else if(sum===21){
     message = "You have got BlackJack!"
+    hasBlackJack = true;
 }
 else{
+    isAlive = false;
     message = "Oh No! Busted!"
 }
 
@@ -54,8 +61,10 @@ messageEl.textContent=message;
 }
 
 function newCard(){
+    if(!hasBlackJack && isAlive){
     let card = getRandomCard()
     cards.push(card)
     sum += card;
     renderGame();
+}
 }
