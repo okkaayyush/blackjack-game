@@ -1,8 +1,15 @@
 let hasBlackJack = false
 let isAlive = false
 
+let player = {
+    name: "Aayush",
+    chips: 69,
+}
 
-let cards =[]
+let playerEl = document.getElementById("player-el")
+playerEl.textContent = player.name + ": $" + player.chips
+
+let cards = []
 let sum= 0;
 let message = ""
 
